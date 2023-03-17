@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let buttonWrong1 = document.querySelector('#wrong1');
+                let buttonWrong2 = document.querySelector('#wrong2');
+                let buttonCorrect = document.querySelector('#correct');
+                let answer = document.querySelector('#answer');
+
+
+                let buttonSubmit = document.querySelector('#delivery');
+                let answer2 = document.querySelector('#answer2');
+
+                buttonWrong1.addEventListener("click", function() {
+                    buttonCorrect.style.backgroundColor = '#d9edff';
+                    buttonWrong1.style.backgroundColor = 'red';
+                    buttonWrong2.style.backgroundColor = '#d9edff';
+                    answer.innerHTML = 'WRONG';
+                });
+                buttonWrong2.addEventListener("click", function() {
+                    buttonCorrect.style.backgroundColor = '#d9edff';
+                    buttonWrong2.style.backgroundColor = 'red';
+                    buttonWrong1.style.backgroundColor = '#d9edff';
+                    answer.innerHTML = 'WRONG';
+                });
+                buttonCorrect.addEventListener("click", function() {
+                    eventoAtivo = false;
+                    buttonWrong1.style.backgroundColor = '#d9edff';
+                    buttonWrong2.style.backgroundColor = '#d9edff';
+                    buttonCorrect.style.backgroundColor = 'green';
+                    answer.innerHTML = 'CORRECT';
+                });
+
+                buttonSubmit.addEventListener("click", function() {
+                    let response = document.querySelector('#response').value;
+                    if (response == "Brasilia") {
+                        answer2.innerHTML = 'CORRECT';
+                        answer2.style.color = 'green';
+                    }
+                    else {
+                        answer2.innerHTML = 'INCORRECT';
+                        answer2.style.color = 'red'
+                    }
+                });
+            });
+
+
+        </script>
+
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <h3>What's the name off Brazil's capital?</h3>
+
+                <button id="wrong1">Buenos Aires</button>
+                <button id="correct">Brasilia</button>
+                <button id="wrong2">Assuncion</button>
+
+                <p id="answer"></p>
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+
+                <h3>What's the name off Brazil's capital?</h3>
+
+                <input id="response" autocomplete="off" autofocus type="text">
+                <input id="delivery" type="submit">
+
+                <p id="answer2"></p>
+
+            </div>
+
+        </div>
+    </body>
+</html>
