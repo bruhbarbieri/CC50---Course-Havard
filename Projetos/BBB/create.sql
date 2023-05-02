@@ -1,0 +1,4 @@
+CREATE table edicoes (id INTEGER, edicao NUMERIC, ano NUMERIC, apresentador TEXT NOT NULL, participantes NUMERIC, vencedor TEXT NOT NULL, PRIMARY KEY(id));
+CREATE table participantes (id INTEGER, edicoes_id INTEGER NOT NULL, nome TEXT NOT NULL, nascimento NUMERIC, idade NUMERIC, sexo TEXT NOT NULL, profissao TEXT NOT NULL, cidade TEXT NOT NULL, diasconfinado NUMERIC, colocacao NUMERIC, status TEXT NOT NULL, data NUMERIC , PRIMARY KEY(id), FOREIGN KEY(edicoes_id) REFERENCES edicoes(id));
+CREATE table paredoes (id INTEGER, edicoes_id INTEGER NOT NULL, data NUMERIC, quantidadevotos NUMERIC, numero TEXT NOT NULL, PRIMARY KEY(id), FOREIGN KEY(edicoes_id) REFERENCES edicoes(id));
+CREATE table paredoes_participantes (participantes_id INTEGER NOT NULL, paredoes_id INTEGER NOT NULL, porcentagem TEXT NOT NULL, FOREIGN KEY(participantes_id) REFERENCES participantes(id), FOREIGN KEY(paredoes_id) REFERENCES paredoes(id));

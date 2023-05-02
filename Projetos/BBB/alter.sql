@@ -1,0 +1,1 @@
+ALTER TABLE participantes ADD COLUMN estado TEXT NOT NULL;

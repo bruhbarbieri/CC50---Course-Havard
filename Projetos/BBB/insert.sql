@@ -1,0 +1,1 @@
+INSERT INTO edicoes (edicao, ano, apresentador, participantes, vencedor) VALUES (3, 2003, "Pedro Bial", 15, "André Augusto Ferreira Fontes (Dhomini)");
