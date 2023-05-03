@@ -2,23 +2,17 @@
 
 {% block body %}
 
-    {% if session.name %}
-    You are logged in as {{ session.name }}. <a href="/logout">Log out</a>.
-    {% else %}
-    You are not logged in. <a href="/login">Log in</a>.
-    {% endif %}
+    <h1>Pesquisar</h1>
 
-    <h1>Register</h1>
-
-    <form action="/register" method="post">
-        <input autocomplete="off" autofocus name="name" placeholder="Name" type="text">
-        <select name="sport">
-           <option disabled selected value="">Sport</option>
-           {% for sport in sports %}
-                <option value="{{ sport }}">{{ sport }}</option>
+    <form action="/search" method="get">
+        <select name="edicao">
+           <option>Edição</option>
+           {% for edicao in edicoes %}
+                <option value="{{ edicao }}">{{ edicao }}</option>
            {% endfor %}
         </select>
-        <input type="submit" value="Register">
+        <input autocomplete="off" autofocus name="nome" placeholder="Nome" type="text">
+        <input type="submit" value="Search">
     </form>
 
 {% endblock %}

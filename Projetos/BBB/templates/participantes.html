@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <h1>Participantes</h1>
+
+    <table>
+        <thead>
+            <th>Edição</th>
+            <th>Nome</th>
+            <th>Nascimento</th>
+            <th>Idade</th>
+            <th>Sexo</th>
+            <th>Profissão</th>
+            <th>Cidade</th>
+            <th>Dias Confinados</th>
+            <th>Colocação</th>
+            <th>Status</th>
+            <th>Data</th>
+            <th>Estado</th>
+            <th>Signo</th>
+            <th>Ano de Nascimento</th>
+        </thead>
+        <tbody>
+            {% for participante in participantes %}
+                <tr>
+                    <td>{{ participante.edicoes_id }}</td>
+                    <td>{{ participante.nome }}</td>
+                    <td>{{ participante.nascimento }}</td>
+                    <td>{{ participante.idade }}</td>
+                    <td>{{ participante.sexo }}</td>
+                    <td>{{ participante.profissao }}</td>
+                    <td>{{ participante.idade }}</td>
+                    <td>{{ participante.diasconfinado }}</td>
+                    <td>{{ participante.colocacao }}</td>
+                    <td>{{ participante.status }}</td>
+                    <td>{{ participante.data }}</td>
+                    <td>{{ participante.estado }}</td>
+                    <td>{{ participante.signo }}</td>
+                    <td>{{ participante.anonascimento }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
