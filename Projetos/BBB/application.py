@@ -15,9 +15,6 @@ def index():
 
 @app.route("/search", methods=["GET"])
 def search():
-    #nome = request.args.get("nome")
-    #if not nome:
-    #    return render_template("error.html", message="Missing name")
     edicao = request.args.get("edicao")
     nome = request.args.get("nome")
     if not edicao:
@@ -33,7 +30,7 @@ def search():
         return render_template("participantes.html", participantes=participantes)
 
 
-    participantes = db.execute("SELECT * FROM participantes WHERE edicoes_id = ?", edicao)
+    participantes = db.execute("SELECT * FROM participantes WHERE edicoes_id = ? AND nome LIKE ?", edicao, "%" + nome + "%")
     return render_template("participantes.html", participantes=participantes)
 
 #@app.route("/participantes", methods=["GET", "POST"])

@@ -5,14 +5,17 @@
     <h1>Pesquisar</h1>
 
     <form action="/search" method="get">
+        <p>Edição</p>
         <select name="edicao">
-           <option>Edição</option>
+           <option disabled selected value="">Edição</option>
            {% for edicao in edicoes %}
                 <option value="{{ edicao }}">{{ edicao }}</option>
            {% endfor %}
         </select>
+
+        <p>Participante</p>
         <input autocomplete="off" autofocus name="nome" placeholder="Nome" type="text">
-        <input type="submit" value="Search">
+        <input type="submit" value="Pesquisar">
     </form>
 
 {% endblock %}
