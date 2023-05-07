@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div class="page">
+        <h1>PESQUISAR</h1>
+        <form action="/search" method="get">
+            <p>Edição</p>
+            <select name="edicao">
+            <option value="%%" selected>Todas</option>
+            {% for edicao in edicoes %}
+                    <option value="{{ edicao.edicoes_id }}">{{ edicao.edicoes_id }}</option>
+            {% endfor %}
+            </select>
+            <p>Sexo</p>
+            <select name="sexo">
+                <option value="%%" selected>Todos</option>
+                {% for sexo in sexos %}
+                    <option value="{{ sexo.sexo }}">{{ sexo.sexo }}</option>
+                {% endfor %}
+            </select>
+            <p>Participante</p>
+            <input autofocus name="nome" placeholder="Participante" type="text">
+            <p>Profissão</p>
+            <input autofocus name="profissao" placeholder="Profissão" type="text">
+            <p>Cidade</p>
+            <input autofocus name="cidade" placeholder="Cidade" type="text">
+            <p>Classificação</p>
+            <select name="colocacao">
+                <option value="%%" selected>Todos</option>
+                {% for colocacao in colocacoes %}
+                    <option value="{{ colocacao.colocacao }}">{{ colocacao.colocacao }}</option>
+                {% endfor %}
+            </select>
+            <p>Estado</p>
+            <select name="estado">
+                <option value="%%" selected>Todos</option>
+                {% for estado in estados %}
+                    <option value="{{ estado }}">{{ estado }}</option>
+                {% endfor %}
+            </select>
+            <p>Signo</p>
+            <select name="signo">
+                <option value="%%" selected>Todos</option>
+                {% for signo in signos %}
+                    <option value="{{ signo.signo }}">{{ signo.signo }}</option>
+                {% endfor %}
+            </select>
+            <br></br>
+            <input type="submit" value="Pesquisar">
+        </form>
+    </div>
+
+{% endblock %}

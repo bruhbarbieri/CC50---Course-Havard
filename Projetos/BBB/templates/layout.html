@@ -6,6 +6,120 @@
         <title>BBB Statistics</title>
     </head>
     <body>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                font-size: 16px;
+                color: #333;
+            }
+
+            .page {
+                padding: 20px;
+            }
+
+            p {
+                margin-bottom: 5px;
+            }
+
+            header {
+                background-color: #122A57;
+                height: 100px;
+                display: flex;
+                align-items: center;
+                color: #FFF;
+            }
+
+            form {
+                margin: 20px 0;
+                padding: 0px;
+            }
+
+            select {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            input[type="text"],
+            textarea {
+                display: block;
+                width: 20%;
+                padding: 5px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            input[type="submit"] {
+                background-color: #ff6600;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                align: center;
+            }
+
+            input[type="submit"]:hover,
+            a.input[type="submit"]:hover {
+                background-color: #cc5500;
+            }
+
+            .flex-container {
+                display: flex;
+                max-width: 992px;
+                margin: auto;
+                width: 100%;
+                min-width: 300px;
+            }
+            img {
+                display: flex;
+                width: 160px;
+                padding: 10px;
+            }
+            footer {
+                background-color: #122A57;
+                height: 70px;
+                display: flex;
+                align-items: center;
+            }
+
+            footer .footer {
+                justify-content: space-between;
+                color: #FFF;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+
+            th,
+            td {
+                padding: 10px;
+                text-align: left;
+                border: 1px solid #ccc;
+            }
+
+            th {
+                background-color: #f0f0f0;
+                font-weight: bold;
+            }
+
+        </style>
+        <header>
+            <div class="flex-container">
+                <h1>BBB Statics</h1>
+            </div>
+            <img src="https://spinoff.com.br/entrete/wp-content/uploads/2022/11/1.jpg" alt="robô do BBB">
+        </header>
         {% block body %}{% endblock %}
+        <footer>
+            <div class="flex-container footer">
+                <p>&copy; 2023 CS50 Course</p>
+                <p>Desenvolvido por: Bruna Barbieri</p>
+            </div>
+        </footer>
     </body>
 </html>
