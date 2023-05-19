@@ -1,1 +1,1 @@
-ALTER TABLE participantes ADD COLUMN estado TEXT NOT NULL;
+ALTER TABLE paredoes_lider ADD COLUMN (paredoes_id INTEGER, FOREIGN KEY(participantes_id) REFERENCES participantes(id));

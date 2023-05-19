@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="page">
+    <h1>Edições</h1>
+
+    <table>
+        <thead>
+            <th>Edição</th>
+            <th>Ano</th>
+            <th>Apresentador</th>
+            <th>Participantes</th>
+            <th>Vencedor</th>
+            <th>Dias de Confinamento</th>
+            <th>Inicio</th>
+            <th>Fim</th>
+        </thead>
+        <tbody>
+            {% for edicao in edicoess %}
+                <tr>
+                    <td>{{ edicao.edicao }}</td>
+                    <td>{{ edicao.ano }}</td>
+                    <td>{{ edicao.apresentador }}</td>
+                    <td>{{ edicao.participantes }}</td>
+                    <td>{{ edicao.vencedor }}</td>
+                    <td>{{ edicao.diasconfinamento }}</td>
+                    <td>{{ edicao.datainicio }}</td>
+                    <td>{{ edicao.datafim }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

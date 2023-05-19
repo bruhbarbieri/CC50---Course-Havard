@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div class="page">
+        <h1>PESQUISAR</h1>
+        <form action="/search3" method="get">
+            <p>Edição</p>
+            <select name="edicao">
+            <option value="%%" selected>Todas</option>
+            {% for edicao in edicoes %}
+                    <option value="{{ edicao.edicao }}">{{ edicao.edicao }}</option>
+            {% endfor %}
+            </select>
+            <p>Número do Paredão</p>
+            <select name="numero">
+            <option value="%%" selected>Todas</option>
+            {% for numero in numeros %}
+                    <option value="{{ numero.numero }}">{{ numero.numero }}</option>
+            {% endfor %}
+            </select>
+            <p>Participante</p>
+            <input autofocus name="nome" placeholder="Participante" type="text">
+            <br></br>
+            <input type="submit" value="Pesquisar">
+        </form>
+    </div>
+
+{% endblock %}

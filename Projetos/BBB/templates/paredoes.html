@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="page">
+    <h1>Paredões</h1>
+
+    <table>
+        <thead>
+            <th>Paredão N°</th>
+            <th>Participante</th>
+            <th>Porcentagem</th>
+            <th>Método de Indicação</th>
+            <th>Resultado</th>
+        </thead>
+        <tbody>
+            {% for paredao in paredoes %}
+                <tr>
+                    <td>{{ paredao.numero }}</td>
+                    <td>{{ paredao.nome }}</td>
+                    <td>{{ paredao.porcentagem }}</td>
+                    <td>{{ paredao.metodoindicacao }}</td>
+                    <td>{{ paredao.resultado }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <th>Edição</th>
+            <th>Paredão N°</th>
+            <th>Quantidade de Votos</th>
+            <th>Data</th>
+        </thead>
+        <tbody>
+            {% for paredaoo in paredoess %}
+                <tr>
+                    <td>{{ paredaoo.edicao }}</td>
+                    <td>{{ paredaoo.numero }}</td>
+                    <td>{{ paredaoo.quantidadevotos }}</td>
+                    <td>{{ paredaoo.dataparedao }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <th>Total de Paredões</th>
+        </thead>
+        <tbody>
+            {% for paredaooo in paredoesss %}
+                <tr>
+                    <td>{{ paredaooo.paredoesss }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
