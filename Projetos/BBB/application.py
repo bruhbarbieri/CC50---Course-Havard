@@ -78,11 +78,11 @@ def search3():
                             WHERE edicao LIKE ? AND numero LIKE ? AND nome LIKE ?''', edicao, numero, "%" + nome + "%")
 
 
-    paredoess = db.execute('''SELECT edicao, numero, quantidadevotos, dataparedao FROM participantes
+    paredoess = db.execute('''SELECT edicao, numero, quantidadevotos, dataparedao, paredoes_id FROM participantes
                             JOIN paredoes_participantes ON participantes.id = paredoes_participantes.participantes_id
                             JOIN paredoes ON paredoes_participantes.paredoes_id = paredoes.id
                             JOIN edicoes ON paredoes.edicoes_id = edicoes.id
-                            WHERE edicao LIKE ? AND numero LIKE ? AND nome LIKE ? GROUP BY numero''', edicao, numero, "%" + nome + "%")
+                            WHERE edicao LIKE ? AND numero LIKE ? AND nome LIKE ? GROUP BY numero ORDER BY paredoes_id''', edicao, numero, "%" + nome + "%")
 
     paredoesss = db.execute('''SELECT COUNT(numero) FROM participantes
                             JOIN paredoes_participantes ON participantes.id = paredoes_participantes.participantes_id
