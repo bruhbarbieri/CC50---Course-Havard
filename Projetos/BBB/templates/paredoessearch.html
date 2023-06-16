@@ -21,7 +21,14 @@
             </select>
             <p>Participante</p>
             <input autofocus name="nome" placeholder="Participante" type="text">
-            <br></br>
+            <p>Resultado</p>
+            <select name="resultado">
+            <option value="%%" selected>Todas</option>
+            {% for resultado in resultados %}
+                    <option value="{{ resultado.resultado }}">{{ resultado.resultado }}</option>
+            {% endfor %}
+            <br>
+            <br>
             <input type="submit" value="Pesquisar">
         </form>
     </div>

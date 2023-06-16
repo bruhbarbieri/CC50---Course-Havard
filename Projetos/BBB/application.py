@@ -23,7 +23,9 @@ ANOS = db.execute("SELECT ano FROM edicoes GROUP BY ano")
 
 APRESENTADORES = db.execute("SELECT apresentador FROM edicoes GROUP BY apresentador")
 
-NUMEROS = db.execute("SELECT numero FROM paredoes GROUP BY numero")
+NUMEROS = db.execute("SELECT numero FROM paredoes GROUP BY numero ORDER BY numero")
+
+RESULTADOS = db.execute("SELECT resultado FROM paredoes_participantes GROUP BY resultado")
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -39,7 +41,7 @@ def searchedicoes():
 
 @app.route("/searchparedoes", methods=["GET", "POST"])
 def searchparedoes():
-        return render_template("paredoessearch.html", edicoes=EDICOES2, numeros=NUMEROS)
+        return render_template("paredoessearch.html", edicoes=EDICOES2, numeros=NUMEROS, resultados=RESULTADOS)
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
@@ -53,7 +55,15 @@ def search():
     signo = request.args.get("signo")
 
     participantes = db.execute("SELECT * FROM participantes WHERE edicoes_id LIKE ? AND nome LIKE ? AND sexo LIKE ? AND profissao LIKE ? AND cidade LIKE ? AND colocacao LIKE ? AND estado LIKE ? AND signo LIKE ?", edicao, "%" + nome + "%", sexo, "%" + profissao + "%", "%" + cidade + "%", colocacao, estado, signo)
-    return render_template("participantes.html", participantes=participantes)
+
+    participantess = db.execute("SELECT COUNT(nome) FROM participantes WHERE edicoes_id LIKE ? AND nome LIKE ? AND sexo LIKE ? AND profissao LIKE ? AND cidade LIKE ? AND colocacao LIKE ? AND estado LIKE ? AND signo LIKE ?", edicao, "%" + nome + "%", sexo, "%" + profissao + "%", "%" + cidade + "%", colocacao, estado, signo)
+
+    contagem1 = participantess[0]
+
+    contagemparticipante = list(contagem1.values())[0]
+
+    return render_template("participantes.html", participantes=participantes, participantess=participantess, contagemparticipante=contagemparticipante)
+
 
 @app.route("/search2", methods=["GET", "POST"])
 def search2():
@@ -70,27 +80,33 @@ def search3():
     edicao = request.args.get("edicao")
     numero = request.args.get("numero")
     nome = request.args.get("nome")
+    resultado = request.args.get("resultado")
 
     paredoes = db.execute('''SELECT numero, nome, porcentagem, metodoindicacao, resultado FROM participantes
                             JOIN paredoes_participantes ON participantes.id = paredoes_participantes.participantes_id
                             JOIN paredoes ON paredoes_participantes.paredoes_id = paredoes.id
                             JOIN edicoes ON paredoes.edicoes_id = edicoes.id
-                            WHERE edicao LIKE ? AND numero LIKE ? AND nome LIKE ?''', edicao, numero, "%" + nome + "%")
-
+                            WHERE edicao LIKE ? AND numero LIKE ? AND nome LIKE ? AND resultado LIKE ?''', edicao, numero, "%" + nome + "%", resultado)
 
     paredoess = db.execute('''SELECT edicao, numero, quantidadevotos, dataparedao, paredoes_id FROM participantes
                             JOIN paredoes_participantes ON participantes.id = paredoes_participantes.participantes_id
                             JOIN paredoes ON paredoes_participantes.paredoes_id = paredoes.id
                             JOIN edicoes ON paredoes.edicoes_id = edicoes.id
-                            WHERE edicao LIKE ? AND numero LIKE ? AND nome LIKE ? GROUP BY numero ORDER BY paredoes_id''', edicao, numero, "%" + nome + "%")
+                            WHERE edicao LIKE ? AND numero LIKE ? AND nome LIKE ? AND resultado LIKE ? GROUP BY dataparedao ORDER BY paredoes_id''', edicao, numero, "%" + nome + "%", resultado)
 
-    paredoesss = db.execute('''SELECT COUNT(numero) FROM participantes
-                            JOIN paredoes_participantes ON participantes.id = paredoes_participantes.participantes_id
+    paredoesss = db.execute('''SELECT COUNT(dataparedao) FROM paredoes WHERE id IN (SELECT paredoes_id FROM paredoes_participantes
+                            JOIN participantes ON paredoes_participantes.participantes_id = participantes.id
                             JOIN paredoes ON paredoes_participantes.paredoes_id = paredoes.id
                             JOIN edicoes ON paredoes.edicoes_id = edicoes.id
-                            WHERE edicao LIKE ? AND numero LIKE ? AND nome LIKE ?''', edicao, numero, "%" + nome + "%")
+                            WHERE edicao LIKE ? AND numero LIKE ? AND nome LIKE ? AND resultado LIKE ? GROUP BY dataparedao)''', edicao, numero, "%" + nome + "%", resultado)
 
-    return render_template("paredoes.html", paredoes=paredoes, paredoess=paredoess, paredoesss=paredoesss)
+    contagem = paredoesss[0]
+
+    contagemparedao = list(contagem.values())[0]
+
+    return render_template("paredoes.html", paredoes=paredoes, paredoess=paredoess, paredoesss=paredoesss, contagemparedao=contagemparedao)
+
+
 
 
 
